@@ -53,13 +53,21 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: TextField(
                       controller: _controller,
-                      style: TextStyle(color: Colors.black),
-                    ))
+                      style: TextStyle(color: Colors.white),
+                    )),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.send))
                   ],
                 ))
           ],
         ),
       ),
     );
+    sendMessage(String text) async {
+      if (text.isEmpty) {
+        if (text.isEmpty) {
+          print('Message is empty');
+        } else {}
+      }
+    }
   }
 }

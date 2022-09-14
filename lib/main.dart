@@ -1,3 +1,5 @@
+import 'package:chatbot/Messages.dart';
+import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -23,10 +25,41 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late DialogFlowtter dialogFlowtter;
+  final TextEditingController _controller = TextEditingController();
+  List<Map<String, dynamic>> messages = [];
+
+  @override
+  void initState() {
+    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('AMbot'),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(child: Messages(messages: messages)),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                color: Colors.deepPurple,
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: TextField(
+                      controller: _controller,
+                      style: TextStyle(color: Colors.black),
+                    ))
+                  ],
+                ))
+          ],
+        ),
+      ),
     );
   }
 }
